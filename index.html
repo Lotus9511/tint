@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShadeTek — Premium Window Tinting</title>
+
+  <!-- Fonts (you can swap these) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --panel:#0f0f10;
+      --panel2:#101112;
+      --text:#e9e9ea;
+      --muted:#a9aaad;
+      --line:rgba(255,255,255,.08);
+      --line2:rgba(255,255,255,.12);
+      --accent:#ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+
+      /* Replace with your hero image */
+      --hero-bg: url("images/hero-bg.jpg");
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.06), transparent 60%),
+                  radial-gradient(900px 420px at 10% 10%, rgba(255,255,255,.03), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Page frame like the screenshots */
+    .frame{
+      width:min(1400px, 92vw);
+      margin:22px auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)) ;
+      box-shadow: var(--shadow);
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(0,0,0,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 26px;
+      gap:18px;
+    }
+    .brand{
+      font-family: "Playfair Display", serif;
+      letter-spacing:.08em;
+      font-weight:600;
+      font-size:18px;
+    }
+    .nav-links{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      font-size:13px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+    }
+    .nav-links a:hover{color:#fff}
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      white-space:nowrap;
+    }
+    .phone{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      letter-spacing:.08em;
+    }
+    .btn{
+      border:1px solid var(--line2);
+      background:transparent;
+      color:#fff;
+      padding:12px 16px;
+      border-radius:10px;
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+    .btn:hover{border-color:rgba(255,255,255,.25); transform:translateY(-1px)}
+    .btn-solid{
+      background:#fff;
+      color:#0b0b0b;
+      border-color:#fff;
+    }
+    .btn-solid:hover{transform:translateY(-1px); filter:brightness(.98)}
+    .btn-ghost{
+      background:transparent;
+      border-color:rgba(255,255,255,.22);
+      color:#fff;
+    }
+
+    /* HERO */
+    .hero{
+      min-height: 72vh;
+      display:grid;
+      place-items:center;
+      position:relative;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.55) 55%, rgba(0,0,0,.72)),
+        linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.65)),
+        var(--hero-bg);
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-inner{
+      width:min(1100px, 88vw);
+      padding:70px 0 62px;
+      text-align:center;
+    }
+    .kicker{
+      font-size:12px;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.68);
+      margin-bottom:14px;
+    }
+    h1{
+      font-family:"Playfair Display", serif;
+      font-size: clamp(44px, 6vw, 84px);
+      line-height:1.02;
+      margin:0 0 18px;
+      font-weight:600;
+    }
+    .sub{
+      max-width: 760px;
+      margin:0 auto 28px;
+      color:rgba(255,255,255,.72);
+      font-size:15px;
+    }
+    .hero-ctas{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    /* STATS */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-bottom:1px solid var(--line);
+      background: rgba(0,0,0,.35);
+    }
+    .stat{
+      padding:26px 18px;
+      text-align:center;
+      border-right:1px solid var(--line);
+    }
+    .stat:last-child{border-right:none}
+    .stat .num{
+      font-family:"Playfair Display", serif;
+      font-size:42px;
+      letter-spacing:.02em;
+      margin-bottom:4px;
+    }
+    .stat .label{
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.62);
+    }
+
+    /* SECTION */
+    .section{
+      padding:62px 26px;
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(900px 520px at 10% 0%, rgba(255,255,255,.03), transparent 60%),
+        rgba(0,0,0,.15);
+    }
+    .container{
+      width:min(1200px, 92vw);
+      margin:0 auto;
+    }
+    .section-title{
+      margin-bottom:22px;
+    }
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.56);
+      margin-bottom:10px;
+    }
+    .h2{
+      font-family:"Playfair Display", serif;
+      font-size: clamp(34px, 4.2vw, 56px);
+      margin:0;
+      font-weight:600;
+    }
+
+    /* SERVICES GRID */
+    .services-grid{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items:stretch;
+    }
+    .service-card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .service-card .pad{padding:26px}
+    .service-card h3{
+      font-family:"Playfair Display", serif;
+      font-size:36px;
+      margin:8px 0 10px;
+      font-weight:600;
+    }
+    .service-card p{color:rgba(255,255,255,.68); margin:0 0 18px}
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+    .pill{
+      border:1px solid var(--line2);
+      color:rgba(255,255,255,.8);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      background: rgba(0,0,0,.2);
+    }
+    .service-split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:26px;
+    }
+    .media{
+      aspect-ratio: 16/9;
+      background:#111;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .media img{width:100%; height:100%; object-fit:cover; filter:saturate(.95) contrast(1.02)}
+    .learn{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      color:rgba(255,255,255,.85);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+    }
+    .arrow{font-size:18px; opacity:.9}
+
+    /* WHY */
+    .why{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:start;
+      margin-top:34px;
+    }
+    .why-left{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:28px;
+      background: rgba(255,255,255,.03);
+    }
+    .why-left .big{
+      font-family:"Playfair Display", serif;
+      font-size: clamp(40px, 4vw, 62px);
+      line-height:1.02;
+      margin:0 0 14px;
+      font-weight:600;
+    }
+    .why-left p{color:rgba(255,255,255,.68); margin:0}
+    .why-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .why-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      background: rgba(255,255,255,.02);
+      min-height:128px;
+    }
+    .why-item .tt{
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.8);
+      margin:10px 0 8px;
+    }
+    .why-item p{margin:0; color:rgba(255,255,255,.62); font-size:13px}
+
+    /* PROJECTS */
+    .projects{
+      margin-top:34px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .projects-head{
+      padding:26px;
+      border-bottom:1px solid var(--line);
+      text-align:center;
+    }
+    .projects-head .eyebrow{margin:0 0 10px}
+    .projects-head .h2{margin:0}
+    .proj-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+    }
+    .proj{
+      position:relative;
+      aspect-ratio: 16/10;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .proj:nth-child(2n){border-right:none}
+    .proj img{width:100%; height:100%; object-fit:cover; filter:saturate(.92) contrast(1.05)}
+    .tag{
+      position:absolute;
+      bottom:16px;
+      left:16px;
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    /* TESTIMONIALS */
+    .test-head{
+      text-align:center;
+      margin-bottom:26px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:22px;
+      background: rgba(255,255,255,.02);
+      min-height:240px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .stars{
+      letter-spacing:.18em;
+      color:rgba(255,255,255,.9);
+      margin-bottom:12px;
+    }
+    .quote{color:rgba(255,255,255,.68); margin:0 0 18px}
+    .who{
+      border-top:1px solid var(--line);
+      padding-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .who strong{font-weight:600}
+    .who span{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.58);
+    }
+
+    /* CONTACT */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:28px;
+      align-items:stretch;
+    }
+    .contact-left{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:26px;
+      background: rgba(255,255,255,.02);
+    }
+    .contact-left .big{
+      font-family:"Playfair Display", serif;
+      font-size: clamp(40px, 4vw, 62px);
+      line-height:1.02;
+      margin:0 0 12px;
+      font-weight:600;
+    }
+    .contact-left p{margin:0; color:rgba(255,255,255,.68)}
+    .info-grid{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .info{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+      background: rgba(0,0,0,.18);
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+    }
+    .info .k{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+      margin-bottom:6px;
+    }
+
+    form{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:22px;
+      background: rgba(255,255,255,.02);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    label{
+      display:block;
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+      margin:0 0 8px;
+    }
+    input, select, textarea{
+      width:100%;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;
+      padding:14px 14px;
+      color:#fff;
+      outline:none;
+      font: inherit;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(255,255,255,.35)}
+    textarea{min-height:120px; resize:vertical}
+    .full{grid-column:1 / -1}
+    .submit{
+      margin-top:14px;
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      background:#fff;
+      color:#0b0b0b;
+      border:1px solid #fff;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .submit:hover{transform:translateY(-1px); filter:brightness(.98)}
+
+    /* FOOTER */
+    .footer{
+      padding:34px 26px;
+      background: rgba(0,0,0,.45);
+    }
+    .foot-grid{
+      width:min(1200px, 92vw);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap:18px;
+      align-items:start;
+    }
+    .foot-brand{
+      font-family:"Playfair Display", serif;
+      font-weight:600;
+      letter-spacing:.08em;
+      font-size:18px;
+      margin-bottom:10px;
+    }
+    .foot p{margin:0; color:rgba(255,255,255,.62)}
+    .foot h4{
+      margin:0 0 12px;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.75);
+    }
+    .foot a{
+      display:block;
+      padding:8px 0;
+      color:rgba(255,255,255,.62);
+      font-size:13px;
+    }
+    .foot a:hover{color:#fff}
+
+    /* RESPONSIVE */
+    @media (max-width: 980px){
+      .nav-links{display:none}
+      .stats{grid-template-columns: 1fr 1fr}
+      .stat:nth-child(2){border-right:none}
+      .stat:nth-child(1), .stat:nth-child(2){border-bottom:1px solid var(--line)}
+      .services-grid{grid-template-columns: 1fr}
+      .service-split{grid-template-columns: 1fr}
+      .why{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .foot-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="frame">
+
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">SHADETK</a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-right">
+          <div class="phone" aria-label="Phone">
+            <span>☎</span>
+            <span>(555) 123-4567</span>
+          </div>
+          <a class="btn btn-solid" href="#contact">Get a quote</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top" class="hero">
+      <div class="hero-inner">
+        <div class="kicker">Premium window tinting</div>
+        <h1>Precision shade,<br/>flawless finish</h1>
+        <p class="sub">
+          Expert window tinting for automotive, residential, and commercial applications.
+          Trusted by customers across the region.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="#contact">Book an appointment <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="#services">Our services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="Stats">
+      <div class="stat">
+        <div class="num">15K+</div>
+        <div class="label">Vehicles tinted</div>
+      </div>
+      <div class="stat">
+        <div class="num">12+</div>
+        <div class="label">Years experience</div>
+      </div>
+      <div class="stat">
+        <div class="num">99%</div>
+        <div class="label">Customer satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="num">Lifetime</div>
+        <div class="label">Warranty</div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Our services</div>
+          <h2 class="h2">Tinting solutions for every need</h2>
+        </div>
+
+        <div class="services-grid">
+          <!-- Automotive -->
+          <article class="service-card">
+            <div class="media">
+              <!-- Replace with your image -->
+              <img src="images/auto.jpg" alt="Automotive tinting">
+            </div>
+            <div class="pad">
+              <h3>Automotive</h3>
+              <p>
+                From heat rejection to privacy, our automotive tint protects your interior and elevates your vehicle’s appearance
+                with premium ceramic and carbon films.
+              </p>
+              <div class="pill-row">
+                <span class="pill">Ceramic film</span>
+                <span class="pill">Carbon film</span>
+                <span class="pill">UV protection</span>
+                <span class="pill">Heat rejection</span>
+              </div>
+              <a class="learn" href="#contact">Learn more <span class="arrow">→</span></a>
+            </div>
+          </article>
+
+          <!-- Right column split -->
+          <div class="service-split">
+            <!-- Residential -->
+            <article class="service-card">
+              <div class="media">
+                <img src="images/residential.jpg" alt="Residential tinting">
+              </div>
+              <div class="pad">
+                <h3>Residential</h3>
+                <p>
+                  Reduce glare, lower energy costs, and enhance privacy in your home.
+                  Our residential films protect furnishings while keeping your space comfortable.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">Energy savings</span>
+                  <span class="pill">Glare reduction</span>
+                  <span class="pill">UV blocking</span>
+                  <span class="pill">Privacy film</span>
+                </div>
+                <a class="learn" href="#contact">Learn more <span class="arrow">→</span></a>
+              </div>
+            </article>
+
+            <!-- Commercial -->
+            <article class="service-card">
+              <div class="media">
+                <img src="images/commercial.jpg" alt="Commercial tinting">
+              </div>
+              <div class="pad">
+                <h3>Commercial</h3>
+                <p>
+                  Create a comfortable workspace while reducing cooling costs.
+                  Our commercial solutions are designed for offices, storefronts, and large-scale buildings.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">Safety film</span>
+                  <span class="pill">Decorative film</span>
+                  <span class="pill">Anti-graffiti</span>
+                  <span class="pill">Solar control</span>
+                </div>
+                <a class="learn" href="#contact">Learn more <span class="arrow">→</span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Why choose us</div>
+          <h2 class="h2">Craftsmanship you can trust</h2>
+        </div>
+
+        <div class="why">
+          <div class="why-left">
+            <div class="big">Craftsmanship<br/>you can trust</div>
+            <p>
+              With over a decade of experience, we’ve built a reputation for meticulous attention to detail and uncompromising quality.
+              We treat every project — from a compact sedan to a commercial high-rise — with the same level of care and precision.
+            </p>
+          </div>
+
+          <div class="why-grid">
+            <div class="why-item">
+              <div class="tt">Lifetime warranty</div>
+              <p>Every installation is backed by our comprehensive warranty for peace of mind.</p>
+            </div>
+            <div class="why-item">
+              <div class="tt">Certified installers</div>
+              <p>Factory-trained, detail-focused installers for consistent, clean edges.</p>
+            </div>
+            <div class="why-item">
+              <div class="tt">Same-day service</div>
+              <p>Most automotive jobs are completed in a few hours so you can get back on the road.</p>
+            </div>
+            <div class="why-item">
+              <div class="tt">Premium materials</div>
+              <p>Top-tier ceramic and carbon films designed to resist bubbling, peeling, and fading.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS / GALLERY -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <div class="projects">
+          <div class="projects-head">
+            <div class="eyebrow">Our work</div>
+            <h2 class="h2">Recent projects</h2>
+          </div>
+
+          <div class="proj-grid">
+            <div class="proj">
+              <img src="images/project-1.jpg" alt="Recent project 1">
+              <div class="tag">Automotive</div>
+            </div>
+            <div class="proj">
+              <img src="images/project-2.jpg" alt="Recent project 2">
+              <div class="tag">Residential</div>
+            </div>
+            <div class="proj">
+              <img src="images/project-3.jpg" alt="Recent project 3">
+              <div class="tag">Commercial</div>
+            </div>
+            <div class="proj">
+              <img src="images/project-4.jpg" alt="Recent project 4">
+              <div class="tag">Automotive</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <div class="test-head">
+          <div class="eyebrow">Testimonials</div>
+          <h2 class="h2">What our clients say</h2>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“The ceramic film keeps the interior cool even in peak summer, and the installation was absolutely flawless.”</p>
+            </div>
+            <div class="who">
+              <strong>Marcus T.</strong>
+              <span>Model 3 owner</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“We had our entire office building tinted. The energy savings have been incredible, and the team was professional from start to finish.”</p>
+            </div>
+            <div class="who">
+              <strong>Rachel K.</strong>
+              <span>Property manager</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“I’ve been to other tint shops, but the quality here is on another level. Zero bubbles, perfect edges, and the warranty sealed the deal.”</p>
+            </div>
+            <div class="who">
+              <strong>David L.</strong>
+              <span>BMW owner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact">
+          <div class="contact-left">
+            <div class="eyebrow">Get in touch</div>
+            <div class="big">Ready to get started?</div>
+            <p>
+              Contact us today for a free consultation and quote. We’re happy to answer questions and help you choose the right film for your needs.
+            </p>
+
+            <div class="info-grid">
+              <div class="info">
+                <div class="k">Location</div>
+                1234 Shade Blvd, Suite 100<br/>Austin, TX 78701
+              </div>
+              <div class="info">
+                <div class="k">Phone</div>
+                (555) 123-4567
+              </div>
+              <div class="info">
+                <div class="k">Email</div>
+                info@shadetek.com
+              </div>
+              <div class="info">
+                <div class="k">Hours</div>
+                Mon–Fri: 8am–6pm<br/>Sat: 9am–4pm
+              </div>
+            </div>
+          </div>
+
+          <form onsubmit="return handleSubmit(event)">
+            <div class="eyebrow">Request a quote</div>
+
+            <div class="grid">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" placeholder="Your name" required>
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" placeholder="(555) 000-0000" required>
+              </div>
+              <div class="full">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@email.com" required>
+              </div>
+              <div class="full">
+                <label for="service">Service type</label>
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>Select a service</option>
+                  <option>Automotive Tinting</option>
+                  <option>Residential Tinting</option>
+                  <option>Commercial Tinting</option>
+                  <option>Paint Protection</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="msg">Message</label>
+                <textarea id="msg" name="message" placeholder="Tell us about your project..." required></textarea>
+              </div>
+            </div>
+
+            <button class="submit" type="submit">Submit request</button>
+            <p id="formStatus" style="margin:10px 0 0; color:rgba(255,255,255,.6); font-size:13px;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="foot-grid foot">
+        <div>
+          <div class="foot-brand">SHADETK</div>
+          <p>
+            Premium window tinting services for automotive, residential, and commercial applications.
+            Serving the greater area with expert installation and a lifetime warranty.
+          </p>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Automotive Tinting</a>
+          <a href="#services">Residential Tinting</a>
+          <a href="#services">Commercial Tinting</a>
+          <a href="#services">Paint Protection</a>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const status = document.getElementById("formStatus");
+      status.textContent = "Thanks! Your request was submitted (demo).";
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
