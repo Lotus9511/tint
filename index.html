@@ -400,28 +400,53 @@
       line-height: 1.8;
     }
 
-    /* ======= GALLERY ======= */
-    .gallery-grid{
+        /* ======= GALLERY ======= */
+    .gallery-grid.real-gallery{
       display:grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 22px;
     }
+
     .gallery-item{
-      height: 210px;
       border:1px solid rgba(255,255,255,.10);
       border-radius:2px;
       overflow:hidden;
-      background:
-        radial-gradient(800px 300px at 30% 20%, rgba(255,255,255,.10), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.04), rgba(0,0,0,.55));
+      background: rgba(255,255,255,.03);
       position:relative;
+      min-height:260px;
     }
-    .gallery-item::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.70));
-      pointer-events:none;
+
+    .gallery-item.large{
+      grid-column: span 2;
+      min-height:420px;
+    }
+
+    .photo-card img,
+    .video-card video{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .video-card{
+      min-height:360px;
+      background:#000;
+    }
+
+    @media (max-width: 700px){
+      .gallery-grid.real-gallery{
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.large{
+        grid-column: span 1;
+        min-height:300px;
+      }
+
+      .video-card{
+        min-height:260px;
+      }
     }
 
     /* ======= TESTIMONIALS ======= */
@@ -782,20 +807,31 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
+    <!-- GALLERY -->
   <section class="content-block" id="gallery">
     <div class="section-kicker">Gallery</div>
     <h2 class="section-title">Recent work</h2>
 
-    <div class="gallery-grid">
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
-      <div class="gallery-item" aria-label="Gallery image placeholder"></div>
+    <div class="gallery-grid real-gallery">
+      <div class="gallery-item photo-card large">
+        <img src="/mnt/data/FA98761F-5A9C-4C8E-A1A5-F817D8D491E9.jpeg" alt="White Range Rover with premium tint" />
+      </div>
+
+      <div class="gallery-item photo-card">
+        <img src="/mnt/data/8F7DAE4A-3A1B-4A87-AAD0-6F8910164AB1.jpeg" alt="Black Honda Accord rear view with dark tint" />
+      </div>
+
+      <div class="gallery-item photo-card">
+        <img src="/mnt/data/95449033-9A0B-4A53-B29E-98660ECEA211.jpeg" alt="Black Mercedes sedan with tinted windows" />
+      </div>
+
+      <!-- VIDEO SLOT -->
+      <div class="gallery-item video-card">
+        <video controls playsinline preload="metadata" poster="/mnt/data/FA98761F-5A9C-4C8E-A1A5-F817D8D491E9.jpeg">
+          <source src="YOUR-VIDEO-FILE.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </section>
 
