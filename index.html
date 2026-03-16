@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tinters | Premium Window Tinting</title>
 
-  <!-- Fonts (matches the screenshot vibe) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -19,8 +18,6 @@
       --line:rgba(255,255,255,.14);
       --line2:rgba(255,255,255,.10);
       --btn:#f2f2f3;
-
-      /* Exact hero photo (same as the reference site) */
       --heroImg: url("https://v0-tinting-business-website.vercel.app/images/hero-tint.jpg");
     }
 
@@ -33,7 +30,6 @@
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    /* ======= TOP NAV ======= */
     .topbar{
       position:fixed;
       top:0; left:0; right:0;
@@ -105,7 +101,7 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       font-weight:600;
-      border-radius:2px; /* squared like screenshot */
+      border-radius:2px;
       cursor:pointer;
       transition:transform .12s ease, filter .12s ease;
       white-space:nowrap;
@@ -113,7 +109,6 @@
     .quote-btn:hover{ filter:brightness(1.02); }
     .quote-btn:active{ transform: translateY(1px); }
 
-    /* ======= HERO ======= */
     .hero{
       position:relative;
       min-height:100vh;
@@ -223,14 +218,12 @@
 
     .arrow{ display:inline-flex; transform: translateY(1px); }
 
-    /* ======= SECTION WRAP ======= */
     .section-wrap{
       border-top:1px solid rgba(255,255,255,.08);
       border-bottom:1px solid rgba(255,255,255,.08);
       background: #060607;
     }
 
-    /* ======= STATS ======= */
     .stats-row{
       max-width: 1400px;
       margin: 0 auto;
@@ -257,7 +250,6 @@
       color: rgba(255,255,255,.55);
     }
 
-    /* ======= SECTION HEADERS ======= */
     .services-block, .content-block{
       max-width: 1400px;
       margin: 0 auto;
@@ -279,7 +271,6 @@
       letter-spacing:-0.01em;
     }
 
-    /* ======= SERVICES ROWS ======= */
     .service-grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -361,7 +352,6 @@
       background: rgba(255,255,255,.02);
     }
 
-    /* ======= ABOUT / WHY CHOOSE US ======= */
     .two-col{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -400,61 +390,59 @@
       line-height: 1.8;
     }
 
-        /* ======= GALLERY ======= */
+    /* ======= GALLERY ======= */
     .gallery-grid.real-gallery{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap:16px;
     }
-    
+
     .gallery-item{
       border:1px solid rgba(255,255,255,.10);
       border-radius:2px;
       overflow:hidden;
-      background: rgba(255,255,255,.03);
+      background:#000;
       position:relative;
-      height:180px;
+      aspect-ratio: 16 / 10;
     }
-    
+
     .gallery-item.large{
       grid-column: span 2;
-      height:260px;
+      aspect-ratio: 16 / 7;
     }
-    
+
     .photo-card img,
     .video-card video{
       width:100%;
       height:100%;
       display:block;
-      object-fit:contain;
-      background:#000;
+      object-fit:cover;
     }
-    
+
+    .photo-card.large img{
+      object-position: center 60%;
+    }
+
+    .photo-card img{
+      object-position:center;
+    }
+
     .video-card{
-      height:180px;
       background:#000;
     }
-    
+
     @media (max-width: 700px){
       .gallery-grid.real-gallery{
         grid-template-columns: 1fr;
       }
-    
-      .gallery-item{
-        height:160px;
-      }
-    
+
+      .gallery-item,
       .gallery-item.large{
         grid-column: span 1;
-        height:200px;
-      }
-    
-      .video-card{
-        height:160px;
+        aspect-ratio: 16 / 10;
       }
     }
 
-    /* ======= TESTIMONIALS ======= */
     .test-grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -480,7 +468,6 @@
       font-weight:600;
     }
 
-    /* ======= CONTACT ======= */
     .contact-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -550,7 +537,6 @@
     }
     .submit:active{ transform: translateY(1px); }
 
-    /* ======= FOOTER ======= */
     footer{
       border-top:1px solid rgba(255,255,255,.08);
       padding: 40px 22px;
@@ -576,7 +562,6 @@
     .footer-links a{ color: rgba(255,255,255,.55); text-decoration:none; }
     .footer-links a:hover{ color: rgba(255,255,255,.80); }
 
-    /* ======= RESPONSIVE ======= */
     @media (max-width: 1100px){
       h1{ font-size:64px; }
       .nav{ gap:22px; }
@@ -587,7 +572,6 @@
       .service-grid{ grid-template-columns: 1fr; gap: 36px; }
       .service-photo{ height: 360px; }
       .two-col{ grid-template-columns: 1fr; gap: 34px; }
-      .gallery-grid{ grid-template-columns: 1fr 1fr; }
       .test-grid{ grid-template-columns: 1fr; }
       .contact-grid{ grid-template-columns: 1fr; }
     }
@@ -605,14 +589,12 @@
       .stat .num{ font-size: 46px; }
       .section-title{ font-size: 44px; }
       .service-name{ font-size: 38px; }
-      .gallery-grid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- TOP NAV -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">TINTERS</div>
@@ -641,7 +623,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-inner">
       <div class="kicker">Premium Window Tinting</div>
@@ -663,9 +644,7 @@
     </div>
   </section>
 
-  <!-- STATS + SERVICES -->
   <section class="section-wrap">
-    <!-- STATS BAR -->
     <div class="stats-row">
       <div class="stat">
         <div class="num">15K+</div>
@@ -685,12 +664,10 @@
       </div>
     </div>
 
-    <!-- SERVICES -->
     <div class="services-block" id="services">
       <div class="section-kicker">Our Services</div>
       <h2 class="section-title">Tinting solutions for every need</h2>
 
-      <!-- Automotive -->
       <div class="service-grid">
         <div class="service-photo auto" aria-label="Automotive tinting photo"></div>
 
@@ -718,7 +695,6 @@
         </div>
       </div>
 
-      <!-- Residential -->
       <div class="service-grid">
         <div class="service-photo res" aria-label="Residential tinting photo"></div>
 
@@ -745,7 +721,6 @@
         </div>
       </div>
 
-      <!-- Commercial -->
       <div class="service-grid">
         <div class="service-photo com" aria-label="Commercial tinting photo"></div>
 
@@ -774,7 +749,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="content-block" id="about">
     <div class="section-kicker">About</div>
     <h2 class="section-title">Craftsmanship you can trust</h2>
@@ -812,7 +786,6 @@
     </div>
   </section>
 
-    <!-- GALLERY -->
   <section class="content-block" id="gallery">
     <div class="section-kicker">Gallery</div>
     <h2 class="section-title">Recent work</h2>
@@ -830,17 +803,15 @@
         <img src="images/mercedes.jpeg" alt="Black Mercedes sedan with tinted windows" />
       </div>
 
-      <!-- VIDEO SLOT -->
       <div class="gallery-item video-card">
-        <video controls playsinline preload="metadata" poster="/mnt/data/FA98761F-5A9C-4C8E-A1A5-F817D8D491E9.jpeg">
-          <source src="YOUR-VIDEO-FILE.mp4" type="video/mp4" />
+        <video controls playsinline preload="metadata" poster="images/range-rover.jpeg">
+          <source src="videos/tint-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
   <section class="content-block" id="testimonials">
     <div class="section-kicker">Testimonials</div>
     <h2 class="section-title">What clients say</h2>
@@ -861,7 +832,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="content-block" id="contact">
     <div class="section-kicker">Contact</div>
     <h2 class="section-title">Request a quote</h2>
@@ -914,7 +884,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div>© <span id="year"></span> Tinters. All rights reserved.</div>
